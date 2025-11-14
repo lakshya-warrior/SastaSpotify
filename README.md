@@ -6,7 +6,7 @@ type make in the terminal and you should see
 gcc song.c extract_songs.c albumshit.c playlists.c -o song
 ./song
 
-COMMANDS (Type the blue part to execute (number/word/>/<)) ...
+COMMANDS (Type the $${\color{blue}\text{blue}}$$ part to execute (number/word/>/<)) ...
 
 Type in any command in the blue text
 
