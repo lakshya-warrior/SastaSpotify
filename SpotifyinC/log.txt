@@ -1,0 +1,187 @@
+3. clear log
+9. Exit
+4. Created New ablum --> "homealbum"
+6.1. Added Song 3 to album --> homealbum
+9. Exit
+4. Created New ablum --> "gone"
+6.1. Added Song 4 to album --> gone
+9. Exit
+4. Created New ablum --> "helo"
+6.1. Added Song 2 to album --> helo
+6.1. Added Song 4 to album --> helo
+9. Exit
+4. Created New ablum --> "testing"
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+7.1. Added Song 3 to playlist
+p. play Song
+>. next Song
+>. next Song
+>. next Song
+7.1. Added Song 5 to playlist
+7.1. Added Song 6 to playlist
+p. play Song
+>. next Song
+>. next Song
+>. next Song
+>. next Song
+p. play Song
+p. play Song
+9. Exit
+7.1. Added Song 3 to playlist
+7.3. Show Playlist
+7.1. Added Song 5 to playlist
+7.1. Added Song 9 to playlist
+7.3. Show Playlist
+9. Exit
+7.1. Added Song 3 to playlist
+7.1. Added Song 5 to playlist
+7.3. Show Playlist
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+0. help
+0. help
+9. Exit
+4. Created New ablum --> "allgood"
+6.1. Added Song 1 to album --> allgood
+0. help
+6.3. Show Context of album --> allgood
+9. Exit
+5. Print Albums
+6.3. Show Context of album --> homealbum
+6.1. Added Song 4 to album --> homealbum
+7.1. Added Song 3 to playlist
+7.1. Added Song 4 to playlist
+8. Added Album "homealbum" to playlist
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+7.3. Show Playlist
+1.2. show Song Details --> 67
+2. log
+0. help
+5. Print Albums
+6.3. Show Context of album --> paagal_aurat
+2. log
+0. help
+7.1. Added Song 8 to playlist
+7.1. Added Song 15 to playlist
+7.1. Added Song 2 to playlist
+8. Added Album "paagal_aurat" to playlist
+p. play Song
+>. next Song
+>. next Song
+>. next Song
+>. next Song
+>. next Song
+<. previous Song
+9. Exit
+4. Created New ablum --> "newalbum"
+6.1. Added Song 2 to album --> newalbum
+6.3. Show Context of album --> newalbum
+7.1. Added Song 2 to playlist
+8. Added Album "newalbum" to playlist
+>. next Song
+0. help
+7.3. Show Playlist
+9. Exit
+0. help
+2. log
+0. help
+9. Exit
+2. log
+1.2. show Song Details --> 2
+9. Exit
+9. Exit
+9. Exit
+9. Exit
+4. Created New ablum --> "goodalbum"
+6.1. Added Song 1 to album --> goodalbum
+6.1. Added Song 3 to album --> goodalbum
+6.1. Added Song 5 to album --> goodalbum
+9. Exit
+4. Created New ablum --> "finalcheck"
+6.1. Added Song 3 to album --> finalcheck
+6.1. Added Song 4 to album --> finalcheck
+9. Exit
+4. Created New ablum --> "rr"
+6.1. Added Song 4 to album --> rr
+1.2. show Song Details --> 3
+6.1. Added Song 6 to album --> rr
+6.3. Show Context of album --> rr
+0. help
+7.1. Added Song 4 to playlist
+2. log
+9. Exit
+7.1. Added Song 4 to playlist
+7.1. Added Song 5 to playlist
+7.3. Show Playlist
+9. Exit
+7.1. Added Song 3 to playlist
+7.1. Added Song 4 to playlist
+7.3. Show Playlist
+9. Exit
+7.1. Added Song 3 to playlist
+7.1. Added Song 4 to playlist
+9. Exit
+0. help
+4. Created New ablum --> "finalalbum"
+4. Created New ablum --> "rr"
+6.1. Added Song 7 to album --> rr
+7.3. Show Playlist
+6.3. Show Context of album --> rr
+5. Print Albums
+4. Created New ablum --> "rr"
+6.1. Added Song 7 to album --> rr
+6.1. Added Song 7 to album --> rr
+9. Exit
+6.1. Added Song 3 to album --> bbal
+9. Exit
+7.1. Added Song 4 to playlist
+7.1. Added Song 5 to playlist
+7.1. Added Song 6 to playlist
+7.1. Added Song 7 to playlist
+8. Added Album "rr" to playlist
+7.2. Deleted Song 7 from playlist
+7.3. Show Playlist
+7.2. Deleted Song 6 from playlist
+9. Exit
+7.1. Added Song 4 to playlist
+7.1. Added Song 6 to playlist
+7.1. Added Song 7 to playlist
+8. Added Album "rr" to playlist
+6.3. Show Context of album --> rr
+7.2. Deleted Song 6 from playlist
+9. Exit
+9. Exit
+9. Exit
+4. Created New ablum --> "rr"
+6.1. Added Song 4 to album --> rr
+6.1. Added Song 7 to album --> rr
+6.1. Added Song 9 to album --> rr
+9. Exit
+7.1. Added Song 3 to playlist
+0. help
+4. Created New ablum --> "rr"
+6.1. Added Song 2 to album --> rr
+9. Exit
+1.1. show all Songs
+9. Exit
+9. Exit
+1.1. show all Songs
+1.2. show Song Details --> 2
+9. Exit
+1.1. show all Songs
+1.2. show Song Details --> 2
+9. Exit

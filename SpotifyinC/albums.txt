@@ -1,0 +1,5 @@
+newalbum  2
+goodalbum  1 3 5
+finalcheck  3 4
+rr  4 6 7 9 2
+finalalbum 
