@@ -179,6 +179,7 @@ song_list* playnext(song_list* head, lib_node* library){
     int x = head->song_index;
     printf("%sNOW PLAYING %s", WHITE, RESET);
     printf_onlysong(x, library);
+    printf("\n");
 
 return head;
 }
@@ -191,6 +192,7 @@ song_list* playprev(song_list* head, lib_node* library){
     //printf("NOW PLAYING Id: %d\n", head->song_index);
     printf("%sNOW PLAYING %s", WHITE, RESET);
     printf_onlysong(head->song_index, library);
+    printf("\n");
     // printf_song(head->song_index);
 
 return head;
@@ -205,6 +207,7 @@ song_list* play(song_list* head, lib_node* library){
     int x = head->song_index;
     printf("%sNOW PLAYING %s", WHITE, RESET);
     printf_onlysong(x, library);
+    printf("\n");
 
 return head;
 }
