@@ -78,7 +78,7 @@ library = gensong(library);
 printcommands();
 
 while(1) {
-    printf("%sChoice %s(0/help for commands): ", green1, RESET);
+    printf("%sChoice %s(%s0%s/%shelp%s for commands): ", green1, RESET, BLUE, RESET, BLUE, RESET);
     // fgets(input_choice, 50, stdin);
     // // scanf(" %s", input_choice);
     // // printf(">>%s<<", input_choice);
@@ -219,12 +219,12 @@ while(1) {
 
             int choice2=-2;
             while(choice2!=-1){
-                printf("1. Add\n2. Del\n3. View\n");
+                printf("%s1%s. Add\n%s2%s. Del\n%s3%s. View\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
                 scanf("%d", &choice2);
                 switch (choice2)
                 {
                 case 1:
-                    printf("Type the index of the song to add, for song list type %s0%s): ", BLUE, RESET);
+                    printf("Type the index of the song to add (for songs list type %s0%s): ", BLUE, RESET);
                     scanf("%d", &song_idx);
                     if (song_idx == 0) {
                         printf("Library\n");
@@ -277,7 +277,7 @@ while(1) {
             ;
             int choice3=-2;
             while(choice3!=-1){
-                printf("1. Add\n2. Del\n3. View\n");
+                printf("%s1%s. Add\n%s2%s. Del\n%s3%s. View\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
                 scanf("%d", &choice3);
                 switch (choice3) {
                     case 1:
