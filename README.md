@@ -9,3 +9,8 @@ gcc song.c extract_songs.c albumshit.c playlists.c -o song
 COMMANDS (Type the blue part to execute (number/word/>/<)) ...
 
 Type in any command in the blue text
+
+
+Please Note:
+1. The playlist will be stored only while the application is running
+2. Albums will be stored even after the program stops running
