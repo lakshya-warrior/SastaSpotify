@@ -194,11 +194,11 @@ void list_songs_album(char name[], lib_node* library){
 
 }
 
-int* return_songs_album(char name[]){
+song_list* return_songs_album(char name[], lib_node* library, song_list* head){
     FILE *albumfilepointer;
     char line[301];
     int songmax = 20, i = 1;
-    int* numbers = (int*)malloc((songmax)*sizeof(int));
+    // int* numbers = (int*)malloc((songmax)*sizeof(int));
     albumfilepointer = fopen("albums.txt", "r");
     while (fgets(line, 301, albumfilepointer)) {
         if (strncmp(line, name, strlen(name)) == 0 && line[strlen(name)] == ' ') {
@@ -216,28 +216,13 @@ int* return_songs_album(char name[]){
                     number = (number * 10) + (line[idx] - '0');
                     idx++;
                 }
-
                 if (number == 0) continue;
-
-                if (i >= songmax) {
-                    songmax*=2;
-                    int* temp_ptr = realloc(numbers, songmax * sizeof(int));
-                    if (temp_ptr == NULL) {
-                        printf("%sError: Memory reallocation failed!%s\n", RED, RESET);
-                        free(numbers);
-                        fclose(albumfilepointer);
-                        return NULL;
-                    }
-                    numbers = temp_ptr;
-                }
-                numbers[i++] = number;
+                head = add_playlist(head, number, library);
             }
         }
     }
-
-    numbers[0] = i-1;
     fclose(albumfilepointer);
-    return numbers;
+    return head;
 }
 
 void list_albums(){
