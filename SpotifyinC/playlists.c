@@ -70,21 +70,7 @@ return head;
 }
 
 song_list* add_album_playlist(song_list* head, char name[], lib_node* library){
-    
-    int* numbers = return_songs_album(name);
-    if (numbers == NULL) {
-        printf("%sError%s: Could not get songs from album \"%s\"\n", RED, name, RESET);
-        return head;
-    }
-
-    for (int i = 1; i < numbers[0]+1; i++)
-    {
-        head = add_playlist(head, numbers[i], library);
-    }
-    printf("Added album \"%s\" to playlist\n", name);
-    
-    free(numbers);
-    numbers = NULL;
+    head = return_songs_album(name, library, head);
 
 return head;
 }
