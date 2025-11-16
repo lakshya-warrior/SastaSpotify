@@ -35,9 +35,9 @@ void printcommands(){
     printf("%s7%s. %splaylist%s -- Add/Delete/View from playlist\n", BLUE, RESET, BLUE, RESET);
     printf("%s8%s. %salbum-to-pl%s -- Adds a album to playlist\n", BLUE, RESET, BLUE, RESET);
     printf("%s9%s. %sexit%s (%sq%s) -- To exit from program\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
-    printf("%s>%s. %snext%s -- for next in pl\n", BLUE, RESET, BLUE, RESET);
-    printf("%s<%s. %sprev%s -- for previos song in pl\n", BLUE, RESET, BLUE, RESET);
-    printf("%sp%s. %splay%s -- for previos song in pl\n", BLUE, RESET, BLUE, RESET);
+    printf("%s>%s. %snext%s -- for next in playlist\n", BLUE, RESET, BLUE, RESET);
+    printf("%s<%s. %sprev%s -- for previos song in playlist\n", BLUE, RESET, BLUE, RESET);
+    printf("%sp%s. %splay%s -- playing song in playlist\n", BLUE, RESET, BLUE, RESET);
 }
 
 int commandshelp(char* input) {
@@ -65,6 +65,10 @@ Error statements
 if file does not exist
 play pause
 playing animantion
+Add Deletion of albums
+** space in album names
+** index for album
+** 
 */
 
 int main() {
