@@ -33,13 +33,16 @@ lib_node* gensong(lib_node* head){
         }
     }
     fclose(songsfilepointer);
+    if (head == NULL) {
+        return NULL; 
+    }
     // LOOPING
     temp->next = head;
     return head;
     
     
     // if (head == NULL) {
-    //     printf("Empty.\n");
+    //     printf("Empty\n");
     //     return;
     // }
     // song_list* temp = head;
@@ -54,7 +57,7 @@ lib_node* gensong(lib_node* head){
 void print_songs(lib_node* head){
     
     if (head == NULL) {
-        printf("Empty.\n");
+        printf("Empty\n");
         return;
     }
     lib_node* temp = head;
@@ -62,7 +65,8 @@ void print_songs(lib_node* head){
     do {
         printf("Id: %d Song Name: \"%s\" by %s of time: %d sec\n",temp->index, temp->songname, temp->singer, temp->time);
         temp = temp->next;
-    } while(temp!=head);
+    } 
+    while(temp!=head);
     // FILE * songsfilepointer;
     // songsfilepointer = fopen("songs.txt", "r");
 
@@ -77,7 +81,7 @@ void print_songs(lib_node* head){
 
 void printf_song(int idx, lib_node* head){
     if (head == NULL) {
-        printf("Empty.\n");
+        printf("Empty\n");
         return;
     }
     lib_node* temp = head;
@@ -85,7 +89,8 @@ void printf_song(int idx, lib_node* head){
     do {
         if (idx == temp->index) {printf("Id: %d Song Name: \"%s\" by Singer: %s of Duration: %d sec\n",temp->index, temp->songname, temp->singer, temp->time); return;}
         temp = temp->next;
-    } while(temp!=head);
+    } 
+    while(temp!=head);
 
     printf("%sSong with Id: %d is not there in library!\n%s", YELLOW, idx, RESET);
 
@@ -120,7 +125,7 @@ void printf_song(int idx, lib_node* head){
 
 int checksong(int idx, lib_node* head){
     if (head == NULL) {
-        printf("Empty.\n");
+        printf("Empty\n");
         return 0;
     }
     lib_node* temp = head;
@@ -138,7 +143,7 @@ int checksong(int idx, lib_node* head){
 void printf_onlysong(int idx, lib_node* head){
     
     if (head == NULL) {
-        printf("Empty.\n");
+        printf("Empty\n");
         return;
     }
     lib_node* temp = head;
@@ -146,7 +151,8 @@ void printf_onlysong(int idx, lib_node* head){
     do {
         if (idx == temp->index) {printf("\"%s\" ",temp->songname); return;}
         temp = temp->next;
-    } while(temp!=head);
+    } 
+    while(temp!=head);
 
     printf("%sSong with Id: %d is not there in library!%s\n", YELLOW, idx, RESET);
     
@@ -194,7 +200,8 @@ void free_library(lib_node* head) {
         next_node = temp->next;
         free(temp);
         temp = next_node;
-    } while (temp != head);
+    } 
+    while (temp != head);
 }
 
 // int main() {
