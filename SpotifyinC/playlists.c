@@ -69,9 +69,8 @@ fclose(logfile_pointer);
 return head;
 }
 
-song_list* add_album_playlist(song_list* head, char name[], lib_node* library){
-    head = return_songs_album(name, library, head);
-
+song_list* add_album_playlist(song_list* head, int album_index, lib_node* library){
+    head = return_songs_album(album_index, library, head);
 return head;
 }
 
@@ -82,7 +81,7 @@ song_list* del_playlist(song_list* head, int index, lib_node* library){
         printf("%sNo songs in PLaylist%s\n", YELLOW, RESET);
         return head;
     }
-    if (head->next == head && head->song_index == index){
+    if (head->next == head && head->song_index == index){ // Contains one ele, to delete
         free(head);
         songs_in_pl--;
         printf("Deleted Song Id: %d ", index);
@@ -94,7 +93,7 @@ song_list* del_playlist(song_list* head, int index, lib_node* library){
         return NULL;
     }
 
-    if (head->song_index == index){
+    if (head->song_index == index){ // if i have to del head
         song_list* node_to_del = head;
         head->prev->next = head->next;
         head->next->prev = head->prev;
@@ -180,7 +179,6 @@ song_list* playprev(song_list* head, lib_node* library){
     printf_onlysong(head->song_index, library);
     printf("\n");
     // printf_song(head->song_index);
-
 return head;
 }
 
@@ -205,11 +203,12 @@ void free_playlist(song_list* head) {
     song_list* temp = head;
     song_list* next_node;
     
-    do {
+    do{
         next_node = temp->next;
         free(temp);
         temp = next_node;
-    } while (temp != head);
+    } 
+    while (temp != head);
 }
 
 // int main() {
