@@ -21,7 +21,7 @@
 //     printf("9. exit (q) -- To exit from program\n");
 //     printf(">. next -- for next in pl\n");
 //     printf("<. prev -- for previos song in pl\n");
-//     printf("p. play -- for previos song in pl\n");
+//     printf("p. play -- for playing song in pl\n");
 // }
 void printcommands(){
     printf("\n%sCOMMANDS%s (Type the blue part to execute (number/word/>/<))\n", GREEN, RESET);
@@ -33,11 +33,11 @@ void printcommands(){
     printf("%s5%s. %salbums%s -- List all your created albums\n", BLUE, RESET, BLUE, RESET);
     printf("%s6%s. %sspecific-album%s -- View/Add/Delete from a specific album\n", BLUE, RESET, BLUE, RESET);
     printf("%s7%s. %splaylist%s -- Add/Delete/View from playlist\n", BLUE, RESET, BLUE, RESET);
-    printf("%s8%s. %salbum-to-pl%s -- Adds a album to playlist\n", BLUE, RESET, BLUE, RESET);
-    printf("%s9%s. %sexit%s (%sq%s) -- To exit from program\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
-    printf("%s>%s. %snext%s -- for next in playlist\n", BLUE, RESET, BLUE, RESET);
-    printf("%s<%s. %sprev%s -- for previos song in playlist\n", BLUE, RESET, BLUE, RESET);
-    printf("%sp%s. %splay%s -- playing song in playlist\n", BLUE, RESET, BLUE, RESET);
+    printf("%s8%s. %salbum-to-pl%s -- Adds an album to the playlist\n", BLUE, RESET, BLUE, RESET);
+    printf("%s9%s. %sexit%s (%sq%s) -- To Exit from program\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
+    printf("%s10%s. %splay%s/%sp%s -- Play current song in playlist\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
+    printf("%s11%s. %snext%s/%s>%s -- Play next song in playlist\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
+    printf("%s12%s. %sprev%s/%s<%s -- Play previous song in playlist\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
 }
 
 int commandshelp(char* input) {
@@ -51,24 +51,21 @@ int commandshelp(char* input) {
     if (strcmp(input, "playlist") == 0) return 7;
     if (strcmp(input, "album-to-pl") == 0) return 8;
     if (strcmp(input, "exit") == 0 || strcmp(input, "quit") == 0) return 9;
-    if (strcmp(input, "next") == 0) return 14;
-    if (strcmp(input, "prev") == 0) return 12;
-    if (strcmp(input, "play") == 0) return 10;
-    
+    if (strcmp(input, "next") == 0 || strcmp(input, "11") ==0) return 14;
+    if (strcmp(input, "prev") == 0 || strcmp(input, "12")== 0) return 12;
+    if (strcmp(input, "play") == 0 || strcmp(input, "10") ==0) return 10;
     return -1;
 }
 
 /* TODO
-dont go back to start always
+dont go back to start always of choice
 adding colours proprly
-Error statements
-if file does not exist
-play pause
-playing animantion
+more Error statements
+if .txt file does not exist
+play/pause
+playing animations
 Add Deletion of albums
-** space in album names
-** index for album
-** 
+
 */
 
 int main() {
@@ -78,6 +75,7 @@ int choice, song_idx;
 char input_choice[50], album_name[101];
 lib_node* library = NULL;
 library = gensong(library);
+genalbumcnt();
 
 printcommands();
 
@@ -91,15 +89,15 @@ while(1) {
     
     fgets(input_choice, 50, stdin);
     if (input_choice[0] == '\n') fgets(input_choice, 50, stdin);
-    
+    // printf("LENGTH of choice is: %d", strlen(input_choice));
     if (strchr(input_choice, '\n') == NULL) {
-        int c;
-        while ((c = getchar()) != '\n'); // scaning all the characters after 50 to remove them
+        char excesschar[201];
+        fgets(excesschar, 201, stdin); // Remving excess
     }
     else {
-        input_choice[strlen(input_choice)-1] = '\0';
+        input_choice[strlen(input_choice)-1] = '\0'; // Removing '\n'
     }
-
+    // printf("LENGTH of choice is: %d", strlen(input_choice));
     if (input_choice[0] == '\0') {
         continue;
     }
@@ -143,9 +141,11 @@ while(1) {
             fclose(logfile_pointer);
             break;
         case 3:
-            printf("%sWarning!%s This will clear all the log data.%s\nDo you want to do that? (%sy%s/%sn%s): \n", RED, YELLOW, RESET, green1, RESET, red1, RESET);
+            printf("%sWarning!%s This will clear all the log data%s\nDo you want to do that? (%sy%s/%sn%s): \n", RED, YELLOW, RESET, green1, RESET, red1, RESET);
             char logyesno;
             scanf(" %c", &logyesno);
+            char excesschar[201];
+            fgets(excesschar, 201, stdin);
             if (logyesno=='y'|| logyesno=='Y') {
 
                 logfile_pointer = fopen("log.txt", "w");
@@ -164,13 +164,10 @@ while(1) {
                     printf("Name cannot be empty\n");
                     continue;
                 }
-                if (strchr(album_name, ' ') != NULL) {
-                    printf("TYPE A %sSINGLE STRING%s pls\n", RED, RESET);
-                    continue;
-                }
                 break; 
             }
-            if (gen_album(album_name)) printf("Created Album \"%s\"\n", album_name);
+            int album_index = gen_album(album_name);
+            printf("Created Album \"%s\"\n", album_name);
             logfile_pointer = fopen("log.txt", "a");
             fprintf(logfile_pointer,"4. Created New ablum --> \"%s\"\n", album_name);
             fclose(logfile_pointer);
@@ -178,6 +175,7 @@ while(1) {
             char yesno;
             printf("Do you want to add songs right now? (%sy%s/%sn%s): \n", green1, RESET, red1, RESET);
             scanf(" %c", &yesno);
+            fgets(excesschar, 201, stdin);
 
             while (yesno=='y'|| yesno=='Y') {
                 printf("Type the index of the song to add, for song list type %s0%s): \n", BLUE, RESET);
@@ -189,13 +187,15 @@ while(1) {
                         scanf("%d", &song_idx);
                     }
                     if (checksong(song_idx, library) == 1){
-                        albumadd(song_idx, album_name, library);
+                        albumadd(song_idx, album_index, library);
                         logfile_pointer = fopen("log.txt", "a");
-                        fprintf(logfile_pointer,"6.1. Added Song %d to album --> %s\n", song_idx, album_name);
+                        fprintf(logfile_pointer,"6.1. Added Song %d to album Id: %d\n", song_idx, album_index);
                         fclose(logfile_pointer);
                     }
                     printf("Do you want to add more songs? (%sy%s/%sn%s): \n", green1, RESET, red1, RESET);
                     scanf(" %c", &yesno);
+                    char excesschar[201];
+                    fgets(excesschar, 201, stdin);
             }
             break;
         case 5:
@@ -205,28 +205,32 @@ while(1) {
             fclose(logfile_pointer);
             break;
         case 6:
-            while (1) {
-                printf("Type the name of the album: ");
-                fgets(album_name, sizeof(album_name), stdin);
-                album_name[strcspn(album_name, "\n")] = '\0';
+            printf("Type the id number of the album (for albums list type %s0%s): ", BLUE, RESET);
+            while (scanf("%d", &album_index) != 1) {
+                int c;
+                while ((c = getchar()) != '\n') {}
+            printf("Type the id number of the album (for albums list type %s0%s): ", BLUE, RESET);
+            }
 
-                if (album_name[0] == '\0') {
-                    printf("%sName cannot be empty%s\n",YELLOW ,RESET);
-                    continue;
+            while (album_index == 0){
+                list_albums();
+                logfile_pointer = fopen("log.txt", "a");
+                fprintf(logfile_pointer,"5. Print Albums\n");
+                fclose(logfile_pointer);
+
+                printf("Type the id number of the album: ");
+                while (scanf("%d", &album_index) != 1) {
+                    int c;
+                    while ((c = getchar()) != '\n') {}
+                    printf("Type the id number of the album: ");
                 }
-                if (strchr(album_name, ' ') != NULL) {
-                    printf("%sAlbum name has to single string%s\n",YELLOW,RESET);
-                    continue;
-                }
-                break; 
             }
 
             int choice2=-2;
             while(choice2!=-1){
                 printf("%s1%s. Add\n%s2%s. Del\n%s3%s. View\n", BLUE, RESET, BLUE, RESET, BLUE, RESET);
                 scanf("%d", &choice2);
-                switch (choice2)
-                {
+                switch (choice2) {
                 case 1:
                     printf("Type the index of the song to add (for songs list type %s0%s): ", BLUE, RESET);
                     scanf("%d", &song_idx);
@@ -237,12 +241,12 @@ while(1) {
                         scanf("%d", &song_idx);
                     }
                     if (checksong(song_idx, library) == 1){
-                        albumadd(song_idx, album_name, library);
+                        albumadd(song_idx, album_index, library);
                         choice2 = -1;
                     } 
                     else choice2 = -2;
                     logfile_pointer = fopen("log.txt", "a");
-                    fprintf(logfile_pointer,"6.1. Added Song %d to album --> %s\n", song_idx, album_name);
+                    fprintf(logfile_pointer,"6.1. Added Song %d to album Id: %d\n", song_idx, album_index);
                     fclose(logfile_pointer);
                     choice2 = -1;
                     break;
@@ -250,23 +254,23 @@ while(1) {
                     printf("Type the index of the song to delete, (for songs in album type %s0%s): ", BLUE, RESET);
                     
                     scanf("%d", &song_idx);
-                    if (song_idx == 0) {
+                    while (song_idx == 0) {
                         printf("The Album Contains: \n");
-                        list_songs_album(album_name, library);
+                        list_songs_album(album_index, library);
                         printf("Type the index of the song to delete: ");
                         scanf("%d", &song_idx);
                     }
                     if (checksong(song_idx, library) == 1){
-                        albumdel(song_idx, album_name, library);
+                        albumdel(song_idx, album_index, library);
                         choice2 = -1;
                     } 
                     else choice2 = -1;
                     break;
                 case 3:
                     printf("The Album Contains: \n");
-                    list_songs_album(album_name, library);
+                    list_songs_album(album_index, library);
                     logfile_pointer = fopen("log.txt", "a");
-                    fprintf(logfile_pointer,"6.3. Show Context of album --> %s\n", album_name);
+                    fprintf(logfile_pointer,"6.3. Show Context of album Id: %d\n", album_index);
                     fclose(logfile_pointer);
                     choice2 = -1;
                     break;
@@ -301,6 +305,7 @@ while(1) {
                         char yesno;
                         printf("Do you want to add more songs to the playlist? (%sy%s/%sn%s): \n", green1, RESET, red1, RESET);
                         scanf(" %c", &yesno);
+                        fgets(excesschar, 201, stdin);
 
                         while (yesno=='y'|| yesno=='Y') {
                             printf("Type the index of the song to add, (for song list type %s0%s): \n", BLUE, RESET);
@@ -317,16 +322,17 @@ while(1) {
                                 }
                             printf("Do you want to add more songs to the playlist? (%sy%s/%sn%s): \n", green1, RESET, red1, RESET);
                             scanf(" %c", &yesno);
+                            fgets(excesschar, 201, stdin);
                         }
                         choice3 = -1;
                         break;
                     case 2:
-                        printf("Type the index of the song to delete, (for songs in playlist type %s0%s): ", BLUE, RESET);
+                        printf("Type the Id of the song to delete, (for songs in playlist type %s0%s): ", BLUE, RESET);
                         
                         scanf("%d", &song_idx);
                         if (song_idx == 0) {
                             showpl(playlist, library);
-                            printf("Type the index of the song to delete: ");
+                            printf("Type the Id of the song to delete: ");
                             scanf("%d", &song_idx);
                         }
                         if (checksong(song_idx, library) == 1){
@@ -343,38 +349,43 @@ while(1) {
                         choice3 = -1;
                         break;
                     default:
-                        printf("%sGIVE VALID COMMAND!%s\n",RED, RESET);
+                        printf("%sGIVE Valid COMMAND!%s\n",RED, RESET);
                         choice3 = -2;
                         break;
                 }
             }
         break;
         case 8:
-            while (1) {
-                printf("Type the album name: ");
-                fgets(album_name, sizeof(album_name), stdin);
-                album_name[strcspn(album_name, "\n")] = '\0';
-
-                if (album_name[0] == '\0') {
-                    printf("%sName cannot be empty%s\n",YELLOW ,RESET);
-                    continue;
-                }
-                if (strchr(album_name, ' ') != NULL) {
-                    printf("%sAlbum name has to single string%s\n",YELLOW,RESET);
-                    continue;
-                }
-                break; 
+            printf("Type the Id number of the album (for albums list type %s0%s): ", BLUE, RESET);
+            while (scanf("%d", &album_index) != 1) {
+                int c;
+                while ((c = getchar()) != '\n') {}
+            printf("Type the Id number of the album (for albums list type %s0%s): ", BLUE, RESET);
             }
 
-            playlist = add_album_playlist(playlist, album_name, library);
+            while (album_index == 0){
+                list_albums();
+                logfile_pointer = fopen("log.txt", "a");
+                fprintf(logfile_pointer,"5. Print Albums\n");
+                fclose(logfile_pointer);
+
+                printf("Type the Id number of the album to add to pl: ");
+                while (scanf("%d", &album_index) != 1) {
+                    int c;
+                    while ((c = getchar()) != '\n') {}
+                    printf("Type the Id number of the album to add to pl: ");
+                }
+            }
+
+            playlist = add_album_playlist(playlist, album_index, library);
             logfile_pointer = fopen("log.txt", "a");
-            fprintf(logfile_pointer,"8. Added Album \"%s\" to playlist\n", album_name);
+            fprintf(logfile_pointer,"8. Added Album Id: %d to playlist\n", album_index);
             fclose(logfile_pointer);
             break;
         case 65:
         case 33:
         case 9:
-            printf("%sExiting application...%s\n",GREEN, RESET);
+            printf("%s--Exiting application--%s\n",GREEN, RESET);
             free_playlist(playlist);
             free_library(library);
             logfile_pointer = fopen("log.txt", "a");
@@ -387,6 +398,7 @@ while(1) {
             fprintf(logfile_pointer, "<. previous Song\n");
             fclose(logfile_pointer);
             break;
+        case 11:
         case 14:
             playlist =  playnext(playlist, library);
             logfile_pointer = fopen("log.txt", "a");
@@ -402,7 +414,7 @@ while(1) {
             fclose(logfile_pointer);
             break;
         default:
-            printf("%sInvalid choice. Try again.%s\n", YELLOW, RESET);
+            printf("%sInvalid choice!%s\n", YELLOW, RESET);
         }
 }
 return 0;
